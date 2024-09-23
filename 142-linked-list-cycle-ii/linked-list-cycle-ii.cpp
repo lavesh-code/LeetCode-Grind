@@ -50,7 +50,7 @@ public:
                     fast = fast->next;
                     babu = babu->next;
                 }
-                return babu;
+                return babu; // starting point
             }
         }
         return NULL; 

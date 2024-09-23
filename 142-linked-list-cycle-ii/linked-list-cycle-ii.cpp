@@ -23,16 +23,36 @@ public:
     ListNode *detectCycle(ListNode *head) {
         
         // the first node i reach twice is my starting node
-        unordered_map<ListNode*, bool> visited;
-        ListNode* temp = head;
+        // Using hashmap: 
+        // unordered_map<ListNode*, bool> visited;
+        // ListNode* temp = head;
 
-        while (temp != nullptr) {
-            if (visited.find(temp) != visited.end()) {
-                return temp;
+        // while (temp != nullptr) {
+        //     if (visited.find(temp) != visited.end()) {
+        //         return temp;
+        //     }
+        //     visited[temp] = true;
+        //     temp = temp->next;
+        // }
+        // return nullptr;
+
+        // optimal approach: 
+        ListNode* babu = head;
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        while(fast != NULL && fast->next != NULL){
+            fast = fast->next->next;
+            slow = slow->next;
+
+            if(fast == slow){ // cycle detect
+                while(fast != babu){
+                    fast = fast->next;
+                    babu = babu->next;
+                }
+                return babu;
             }
-            visited[temp] = true;
-            temp = temp->next;
         }
-        return nullptr;
+        return NULL; 
     }
 };

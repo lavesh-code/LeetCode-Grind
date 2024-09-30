@@ -3,7 +3,7 @@ public:
     TreeNode* invertTree(TreeNode* root) {
         if(root == NULL) return NULL;
 
-        auto temp = root -> left; 
+        TreeNode* temp = root -> left; 
         root-> left = root -> right;
         root -> right = temp; 
 

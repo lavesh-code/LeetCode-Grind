@@ -10,36 +10,19 @@
  * };
  */
 class Solution {
+private:
+    bool isSameTree(TreeNode* s, TreeNode* t) {
+        if (s ==NULL && t==NULL) return true; // Both trees are empty
+        if (s==NULL || t==NULL) return false; // One tree is empty, and the other is not
+        if (s->val != t->val) return false; // Values do not match
+        // Recursively check left and right subtrees
+        return isSameTree(s->left, t->left) && isSameTree(s->right, t->right);
+    }
 public:
-    bool ans = false;
-
-    bool match(TreeNode * root, TreeNode *subRoot) {
-    if (root && subRoot) {
-        bool a = match(root -> left, subRoot -> left);
-        bool b = match(root -> right, subRoot -> right);
-
-        if ((root -> val == subRoot -> val) && a && b)
-        return true;
-        else
-        return false;
-    } 
-    else if (!root && !subRoot) 
-        return true;
-    else 
-        return false;
-    }
-
-    void inorder(TreeNode * root, TreeNode * subRoot) {
-    if (root) {
-        inorder(root -> left, subRoot);
-        bool x = match(root, subRoot);
-        if (x) ans = 1;
-        inorder(root -> right, subRoot);
-    }
-    }
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-        inorder(root, subRoot);
-        return ans;
-        
+        if (root == NULL) return false; // If root is null, subRoot cannot be a subtree
+        if(isSameTree(root, subRoot)) return true; // Check if trees are identical
+        // Recursively check left and right subtrees
+        return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
     }
 };

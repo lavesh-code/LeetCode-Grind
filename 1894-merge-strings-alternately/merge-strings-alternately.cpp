@@ -8,6 +8,8 @@ public:
             result.push_back(word1[i]);
             result.push_back(word2[i]);
         }
+        // // Baaki ke characters jo bache, unhe add karna hai (agar kuch bacha ho)
+        // word1[n-1:word1.size()] ye python ka string slicing ka syntax hh 
         result.append(word1.substr(n));
         result.append(word2.substr(n));
         return result; 

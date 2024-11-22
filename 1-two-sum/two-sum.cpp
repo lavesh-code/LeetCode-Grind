@@ -19,14 +19,3 @@ public:
         return {-1,-1}; 
     }
 };
-
-
-        // BRUTE:
-        // for (int i = 0; i < n - 1; i++) { // O(n2)
-        //     for (int j = i + 1; j < n; j++) {
-        //         if (nums[i] + nums[j] == target) {
-        //             return {i, j};
-        //         }
-        //     }
-        // }
-        // return {}; // No solution found
